@@ -1,10 +1,20 @@
 
 import tkinter as tk
 
+def ekraani_suurus(w, h):
+    sw = root.winfo_screenwidth()
+    sh = root.winfo_screenheight()
+    x = (sw - w) / 2
+    y = (sh - h) / 2
+    return ('%dx%d+%d+%d' % (w, h, x, y))
+
+
+
+
 root = tk.Tk()
 
 root.title("Poomismäng")
-root.geometry("1000x700")
+root.geometry(ekraani_suurus(700, 700))
 frame = tk.Frame(root)
 frame.pack(fill=tk.BOTH, expand=1)
 
