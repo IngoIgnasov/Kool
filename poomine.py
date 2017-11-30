@@ -1,6 +1,6 @@
 
 import tkinter as tk
-
+# Kas see kood kaob ara voi ei kao, eks me näe
 def ekraani_suurus(w, h):
     sw = root.winfo_screenwidth()
     sh = root.winfo_screenheight()
