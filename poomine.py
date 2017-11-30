@@ -31,6 +31,8 @@ nupp2= tk.Button(frame,text = "Välju",font = ("arial",30), command = root.destr
 msg.pack(pady=10)
 w1 = tk.Label(frame, image=logo).pack()
 nupp1.place(x=90,y=500)
+nupp1.config(bg="green", activebackground="yellow", anchor="center", bd=10)
 nupp2.place(x=610,y=500)
+nupp2.config(bg="red", activebackground="orange", anchor="center", bd=10)
 root.mainloop()
     
