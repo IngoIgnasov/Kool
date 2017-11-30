@@ -15,23 +15,22 @@ def ekraani_vahetamine(*milline):
     frame.pack_forget()
     uus_frame.pack(fill=tk.BOTH, expand=1)
 
-
 root = tk.Tk()
 
 root.title("Poomismäng")
-root.geometry(ekraani_suurus(700, 700))
+root.geometry(ekraani_suurus(1000, 700))
 frame = tk.Frame(root)
 frame.pack(fill=tk.BOTH, expand=1)
 
 logo = tk.PhotoImage(file="noose.gif")
-w1 = tk.Label(frame, image=logo).pack(side="right")
-
 
 msg = tk.Message(frame,text = "POOMISMÄNG")
 msg.config(bg = "lightgreen", font = ("times", 60),aspect = 500,pady=20,width = 1000)
+nupp1=tk.Button(frame,text = "Start(avan uue akna)",font = ("arial",30), command=ekraani_vahetamine)
+nupp2= tk.Button(frame,text = "Välju",font = ("arial",30), command = root.destroy)
 msg.pack(pady=10)
-nupp1=tk.Button(frame,text = "Start(avan uue akna)", command=lambda: ekraani_vahetamine())
-nupp1.pack(anchor=tk.SW)
-
+w1 = tk.Label(frame, image=logo).pack()
+nupp1.place(x=90,y=500)
+nupp2.place(x=610,y=500)
 root.mainloop()
     
