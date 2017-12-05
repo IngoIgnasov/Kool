@@ -1,6 +1,4 @@
-
 import tkinter as tk
-# Kas see kood kaob ara voi ei kao, eks me näe
 def ekraani_suurus(w, h):
     sw = root.winfo_screenwidth()
     sh = root.winfo_screenheight()
@@ -8,15 +6,22 @@ def ekraani_suurus(w, h):
     y = (sh - h) / 2
     return ('%dx%d+%d+%d' % (w, h, x, y))
 
-def raskusastme_valimine(*milline):
+def raskusastme_valimine():
     global Frame
 
     frame.pack_forget()
 
-    menu2_frame = tk.Frame(root, width=root.winfo_width(), height=350, bg="green")
+    menu2_frame = tk.Frame(root, width=root.winfo_width(), height=350)
     menu2_frame.config()
     menu2_frame.tkraise()
     menu2_frame.pack(fill="both", expand=1)
+
+
+    joonistamine1 = tk.Canvas(menu2_frame, width=200, height=200)
+    joonistamine1.pack()
+
+    joonistamine1.create_line(0, 0, 200, 100)
+    joonistamine1.create_line(0, 100, 200, 0, fill="red", dash=(4, 4))
 
     pealkiri = tk.Label(menu2_frame, text= "Keel ja raskusaste", font = ("Times", 40))
 
