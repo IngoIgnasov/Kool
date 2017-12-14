@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import PhotoImage
 def ekraani_suurus(w, h):
     sw = root.winfo_screenwidth()
     sh = root.winfo_screenheight()
@@ -11,24 +12,30 @@ def raskusastme_valimine():
 
     frame.pack_forget()
 
-    menu2_frame = tk.Frame(root, width=root.winfo_width(), height=350)
-    menu2_frame.config()
-    menu2_frame.tkraise()
-    menu2_frame.pack(fill="both", expand=1)
+    menu2_frame = tk.Canvas(root, width=root.winfo_width(), height=350)
+    #===========================================================================
+    # menu2_frame.config()
+    # menu2_frame.tkraise()
+    #===========================================================================
+    menu2_frame.pack()
+    avatud = PhotoImage(file="lihtnetest.png")
+    suletud= PhotoImage(file="lihtnetest2.png")
+    pildid.add(avatud)
+    pildid.add(suletud)
+    #===============================================================================
+#     joonistamine1 = tk.Canvas(menu2_frame,width=500,height=600,background="white")
+#     joonistamine1.pack(fill="both",expand=1)
+#     
+# 
+#     joonistamine1.create_line(0, 0, 200, 100)
+#     joonistamine1.create_line(0, 100, 200, 0, fill="red", dash=(4, 4))
+#     img = (300, 400, image=suletud, activeimage=avatud)
+#===============================================================================
 
-
-    joonistamine1 = tk.Canvas(menu2_frame, width=200, height=200)
-    joonistamine1.pack()
-
-    joonistamine1.create_line(0, 0, 200, 100)
-    joonistamine1.create_line(0, 100, 200, 0, fill="red", dash=(4, 4))
-
-    pealkiri = tk.Label(menu2_frame, text= "Keel ja raskusaste", font = ("Times", 40))
-
+    pealkiri = tk.Label(menu2_frame, text= "Keel ja raskusaste", font = ("Times", 40),anchor = tk.N)
     pealkiri.config(bg="yellow")
     pealkiri.pack(fill="x")
-
-
+    
 
 root = tk.Tk()
 
@@ -36,7 +43,7 @@ root.title("Poomismäng")
 root.geometry(ekraani_suurus(1000, 700))
 frame = tk.Frame(root)
 frame.pack(fill=tk.BOTH, expand=1)
-
+pildid = set()
 logo = tk.PhotoImage(file="noose.gif")
 
 msg = tk.Message(frame,text = "POOMISMÄNG")
