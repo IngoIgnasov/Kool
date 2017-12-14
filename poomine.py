@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 def ekraani_suurus(w, h):
     sw = root.winfo_screenwidth()
     sh = root.winfo_screenheight()
@@ -34,6 +35,7 @@ def raskusastme_valimine(valitud):
     tagasi_nupp.config(font=("arial", 24), width = 100, height= 50, image=muster, compound="center", activebackground="red", bd = 10, relief="ridge")
     tagasi_nupp.place(x = 435, y = 600)
 
+
     kerge = tk.Button(frame, text="Kerge")
     kerge.config(font=("arial", 24), width=100, height=50, image=muster, compound="center",
                        activebackground="green", bd=10, command=lambda: raskusastme_valimine("kerge"))
@@ -53,7 +55,6 @@ def raskusastme_valimine(valitud):
 
 
     root.mainloop()
-
 
 
 
@@ -89,7 +90,6 @@ def esiekraan():
     nupp2.config(image=muster, activebackground="red", anchor="center", bd=10, height=50, width=100)
 
     root.mainloop()
-
 
 
 # Loome Tkinteri akna vajalike paramaatritega ja sinna sisse fraimi.
