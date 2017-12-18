@@ -16,6 +16,9 @@ arvamise_korrad = 0
 
 
 
+
+
+
 def ekraani_suurus(w, h):
     sw = root.winfo_screenwidth()
     sh = root.winfo_screenheight()
@@ -129,7 +132,6 @@ def põhiaken(raskus):
     taustraam.config(bg="green")
     taustraam.pack(fill="both")
 
-
     tekstiraam=tk.Frame(taustraam,width = 1000,height=200)
     tekstiraam.config(bg="red")
     tekstiraam.pack(fill = "both", expand= 1)
@@ -139,21 +141,26 @@ def põhiaken(raskus):
     nupuraam.pack(side="left")
     
     pixel = tk.PhotoImage(width=1, height=1)
+    nupupilt = tk.PhotoImage(file="pildid/sininenupp.png")
+    nupupilt2 = tk.PhotoImage(file="pildid/sininenupp2.png")
     for i in range(6):
-        tk.Button(nupuraam,bg="green",width=100,font=("arial", 24),height=100,image = pixel
+        tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90               
                   ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i)).place(x=10+(115*i),y=0)
     for i in range(6,12):
-        tk.Button(nupuraam,bg="green",width=100,font=("arial", 24),height=100,image = pixel
-          ,text=str(tähed[i]),compound="c").place(x=10+(115*(i-6)),y=110)
+        tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90
+          ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i)).place(x=10+(115*(i-6)),y=110)
     for i in range(12,18):
-        tk.Button(nupuraam,bg="green",width=100,font=("arial",24),height=100,image = pixel
-          ,text=str(tähed[i]),compound="c").place(x=10+(115*(i-12)),y=220)
+        tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial",40),height=90
+          ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i)).place(x=10+(115*(i-12)),y=220)
     for i in range(18,24):
-        tk.Button(nupuraam,bg="green",width=100,font=("arial", 24),height=100,image = pixel
-        ,text=str(tähed[i]),compound="c").place(x=10+(115*(i-18)),y=330)
+        tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90
+        ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i)).place(x=10+(115*(i-18)),y=330)
     for i in range(24,27):
-        tk.Button(nupuraam,bg="green",width=200,font=("arial", 24),height=40,image = pixel,
-        text=str(tähed[i]),compound="c").place(x=10+(235*(i-24)),y=440)
+
+        tk.Button(nupuraam,image=nupupilt2,width=190,font=("arial", 40),height=35
+        ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i)
+        ).place(x=10+(235*(i-24)),y=440)
+
         
     pildiraam = tk.Frame(taustraam,width = 300,height=500)
     pildiraam.config(bg="yellow")
