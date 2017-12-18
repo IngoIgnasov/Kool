@@ -128,7 +128,7 @@ def põhiaken(raskus):
     taustraam = tk.Frame(root)
     taustraam.config(bg="green")
     taustraam.pack(fill="both")
-    taust =
+
 
     tekstiraam=tk.Frame(taustraam,width = 1000,height=200)
     tekstiraam.config(bg="red")
