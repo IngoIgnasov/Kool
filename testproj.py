@@ -31,4 +31,14 @@ def teesõnadjatähed(tekstifail):
     for sõna in sõnad:
         for täht in sõna.strip():
             tähestik.add(täht.lower())
-    return (sorted(sõnad),sorted(list(tähestik)))
+
+    sõnade_maatriks = [[]]
+    for sõna in sõnad:
+        while True:
+            try:
+                sõnade_maatriks[len(sõna)].append(sõna)
+                break
+            except IndexError:
+                sõnade_maatriks.append([])
+
+    return (sõnade_maatriks, sorted(list(tähestik)))
