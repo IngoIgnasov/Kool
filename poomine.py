@@ -10,6 +10,9 @@ tähed = sõnadjatähed[1]
 arvamise_korrad = 0
 raskusaste = ""
 
+
+
+
 #===============================================================================
 # def a(event):
 #     nupuvajutus("a")
@@ -140,16 +143,23 @@ vihje = ""
 sõna = ""
 
 
-def sõna_uuendamine(pakkumine, label):
+def sõna_uuendamine(pakkumine, label_sona, label_pilt):
     uuendatud_sona = ""
     global vihje
+    global arvamise_korrad
     for element in range(len(vihje)):
         if pakkumine == sõna[element]:
             uuendatud_sona = uuendatud_sona + pakkumine
         else:
             uuendatud_sona = uuendatud_sona + vihje[element]
-    label.config(text=uuendatud_sona)
+
+    if pakkumine not in sõna:
+        arvamise_korrad += 1
     vihje = uuendatud_sona
+    label_pilt.config(image=pildid[arvamise_korrad + 1])
+    label_sona.config(text=uuendatud_sona)
+
+
 
     #Juhul kui sõna on ära arvatud,loon lõpuakna
     if vihje == sõna:
@@ -231,6 +241,7 @@ def põhiaken(raskus):
     frame.config(bg="green")
     frame.pack(fill="both")
     taust_sonale = tk.PhotoImage(file="pildid/taust.png")
+    võllapuu = tk.PhotoImage(file="pildid/staadiumid/kriips0.png")
 
     sõnajavihje = sõna_valimine(raskus)
     global sõna
@@ -252,39 +263,42 @@ def põhiaken(raskus):
     
     nupuraam = tk.Frame(frame,width = 700,height=500)
     nupuraam.pack(side="left")
-    
+
+    pildiraam = tk.Frame(taustraam, width=300, height=500)
+    pildiraam.config(bg="yellow")
+    pildiraam.pack(side="right")
+    pildi_label= tk.Label(pildiraam, image = võllapuu, width= 300, height= 500)
+    pildi_label.pack(fill="both", expand= 1)
+
     pixel = tk.PhotoImage(width=1, height=1)
     nupupilt = tk.PhotoImage(file="pildid/sininenupp.png")
     nupupilt2 = tk.PhotoImage(file="pildid/sininenupp2.png")
     for i in range(6):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90
-                  ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)).place(x=10+(115*i),y=0)
+                  ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel, pildi_label)).place(x=10+(115*i),y=0)
     for i in range(6,12):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90
-          ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)).place(x=10+(115*(i-6)),y=110)
+          ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel, pildi_label)).place(x=10+(115*(i-6)),y=110)
     for i in range(12,18):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial",40),height=90
-          ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)).place(x=10+(115*(i-12)),y=220)
+          ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel, pildi_label)).place(x=10+(115*(i-12)),y=220)
     for i in range(18,24):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90
-        ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)).place(x=10+(115*(i-18)),y=330)
+        ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel, pildi_label)).place(x=10+(115*(i-18)),y=330)
     for i in range(24,27):
         tk.Button(nupuraam,image=nupupilt2,width=190,font=("arial", 40),height=35
-        ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)
+        ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel, pildi_label)
         ).place(x=10+(235*(i-24)),y=440)
     tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90               
-                  ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)).place(x=10+(115*i),y=0)
+                  ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel, pildi_label)).place(x=10+(115*i),y=0)
         
-    pildiraam = tk.Frame(frame,width = 300,height=500)
-    pildiraam.config(bg="yellow")
-    pildiraam.pack(side="right")
     root.mainloop()
     
 #funktsioon, kui nuppu vajutatakse
-def nupuvajutus(täht,label):
+def nupuvajutus(täht,label_sona, label_pilt):
     winsound.PlaySound('pildid/nupp.wav', winsound.SND_FILENAME)
     print(täht)
-    sõna_uuendamine(täht, label)
+    sõna_uuendamine(täht, label_sona, label_pilt)
 
 
 def esiekraan():
@@ -327,4 +341,13 @@ root.geometry(ekraani_suurus(1000, 700))
 root.resizable(width="false", height="false")
 frame = tk.Frame()
 frame.pack(fill=tk.BOTH, expand=1)
+
+
+pildid = []
+
+for i in range(11):
+    i = tk.PhotoImage(file="pildid/staadiumid/kriips%d.png" %(i))
+    pildid.append(i)
+
+
 esiekraan()
