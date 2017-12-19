@@ -152,8 +152,10 @@ def sõna_uuendamine(pakkumine, label_sona, label_pilt):
             uuendatud_sona = uuendatud_sona + pakkumine
         else:
             uuendatud_sona = uuendatud_sona + vihje[element]
+
+    if pakkumine not in sõna:
+        arvamise_korrad += 1
     vihje = uuendatud_sona
-    arvamise_korrad += 1
     label_pilt.config(image=pildid[arvamise_korrad + 1])
     label_sona.config(text=uuendatud_sona)
 
