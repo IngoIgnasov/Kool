@@ -8,6 +8,7 @@ sõnadjatähed = teesõnadjatähed("eesti_keel.txt")
 sõnad = sõnadjatähed[0]
 tähed = sõnadjatähed[1]
 arvamise_korrad = 0
+raskusaste = ""
 
 
 def ekraani_suurus(w, h):
@@ -23,7 +24,7 @@ def sõna_valimine(raskusaste):
         pikkus = randint(4, 6)
     elif raskusaste == "keskmine":
         pikkus = randint(7, 10)
-    else:
+    elif raskusaste == "raske":
         pikkus = randint(10, len(sõnad)-1)
     sõna_asukoht = randint(0, len(sõnad[pikkus]) - 1)
     sõna = sõnad[pikkus][sõna_asukoht]
@@ -52,14 +53,23 @@ def sõna_valimine(raskusaste):
     return vihje, sõna
 
 
-def sõna_uuendamine(pakkumine, sõna, eelmine_sõna):
+
+vihje = ""
+sõna = ""
+
+
+def sõna_uuendamine(pakkumine, label):
     uuendatud_sona = ""
-    for element in range(len(eelmine_sõna)):
+    global vihje
+    for element in range(len(vihje)):
         if pakkumine == sõna[element]:
             uuendatud_sona = uuendatud_sona + pakkumine
         else:
-            uuendatud_sona = uuendatud_sona + eelmine_sõna[element]
-    return uuendatud_sona
+            uuendatud_sona = uuendatud_sona + vihje[element]
+    label.config(text=uuendatud_sona)
+    vihje = uuendatud_sona
+
+
 
 
 
@@ -78,10 +88,13 @@ def raskusastme_valimine(valitud):
 
     if valitud == "kerge":
         tk.Label(frame, image=Kerge, width=1000, height=700).pack(fill="both", expand=1)
+        raskusaste = "kerge"
     elif valitud == "keskmine":
         tk.Label(frame, image=Keskmine, width=1000, height=700).pack(fill="both", expand=1)
+        raskusaste = "keskmine"
     elif valitud == "raske":
         tk.Label(frame, image=Raske, width=1000, height=700).pack(fill="both", expand=1)
+        raskusaste = "raske"
     else:
         tk.Label(frame, image=muster, width=1000, height=700).pack(fill="both", expand=1)
 
@@ -124,7 +137,10 @@ def põhiaken(raskus):
     taustraam.pack(fill="both")
     taust_sonale = tk.PhotoImage(file="pildid/taust.png")
 
-    sõna = sõna_valimine(raskus)
+    sõnajavihje = sõna_valimine(raskus)
+
+    sõna = sõnajavihje[1]
+    vihje = sõnajavihje[0]
 
 
     tekstiraam=tk.Frame(taustraam,width = 1000,height=200)
@@ -145,20 +161,20 @@ def põhiaken(raskus):
     nupupilt2 = tk.PhotoImage(file="pildid/sininenupp2.png")
     for i in range(6):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90               
-                  ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)).place(x=10+(115*i),y=0)
+                  ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(tähed[i],sõnalabel)).place(x=10+(115*i),y=0)
     for i in range(6,12):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90
-          ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)).place(x=10+(115*(i-6)),y=110)
+          ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(tähed[i],sõnalabel)).place(x=10+(115*(i-6)),y=110)
     for i in range(12,18):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial",40),height=90
-          ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)).place(x=10+(115*(i-12)),y=220)
+          ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(tähed[i],sõnalabel)).place(x=10+(115*(i-12)),y=220)
     for i in range(18,24):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90
-        ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)).place(x=10+(115*(i-18)),y=330)
+        ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(tähed[i],sõnalabel)).place(x=10+(115*(i-18)),y=330)
     for i in range(24,27):
 
         tk.Button(nupuraam,image=nupupilt2,width=190,font=("arial", 40),height=35
-        ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)
+        ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(tähed[i],sõnalabel)
         ).place(x=10+(235*(i-24)),y=440)
 
         
@@ -170,8 +186,8 @@ def põhiaken(raskus):
 #funktsioon, kui nuppu vajutatakse
 def nupuvajutus(täht,label):
     winsound.PlaySound('pildid/nupp.wav', winsound.SND_FILENAME)
-    label.config(text = "kas töötab")
-    # sõna_uuendamine(arvamise_korrad, )
+    print(täht)
+    sõna_uuendamine(arvamise_korrad, label)
 
 def esiekraan():
     global frame
