@@ -12,12 +12,6 @@ tähed = sõnadjatähed[1]
 arvamise_korrad = 0
 
 
-# Teen sõnade maatriksi, kus igal real on kindla pikkusega sõnad
-
-
-
-
-
 
 def ekraani_suurus(w, h):
     sw = root.winfo_screenwidth()
@@ -131,11 +125,13 @@ def põhiaken(raskus):
     taustraam = tk.Frame(root)
     taustraam.config(bg="green")
     taustraam.pack(fill="both")
+    taust_sonale = tk.PhotoImage(file="pildid/taust.png")
 
     tekstiraam=tk.Frame(taustraam,width = 1000,height=200)
     tekstiraam.config(bg="red")
     tekstiraam.pack(fill = "both", expand= 1)
-    tk.Label(tekstiraam,text = sõna_valimine(raskus)[0], font=("Arial", 40, "bold"), compound = "center").place(x = 50, y = 50)
+    tk.Label(tekstiraam, image = taust_sonale, text = sõna_valimine(raskus)[0], font=("Arial", 40, "bold"), compound = "center",
+             width = 1000, height = 200).pack(expand= 1)
     
     nupuraam = tk.Frame(taustraam,width = 700,height=500)
     nupuraam.pack(side="left")
@@ -204,6 +200,7 @@ def esiekraan():
     nupp2.config(image=muster, activebackground="red", anchor="center", bd=10, height=50, width=100)
 
     root.mainloop()
+
 # Loome Tkinteri akna vajalike paramaatritega ja sinna sisse fraimi.
 root = tk.Tk()
 root.title("Poomismäng")
