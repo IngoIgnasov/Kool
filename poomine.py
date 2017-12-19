@@ -127,6 +127,9 @@ def põhiaken(raskus):
     taustraam.pack(fill="both")
     taust_sonale = tk.PhotoImage(file="pildid/taust.png")
 
+    sõna = sõna_valimine(raskus)
+
+
     tekstiraam=tk.Frame(taustraam,width = 1000,height=200)
     tekstiraam.config(bg="red")
     tekstiraam.pack(fill = "both", expand= 1)
