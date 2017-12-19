@@ -250,7 +250,7 @@ def põhiaken(raskus):
 
 
     
-    nupuraam = tk.Frame(taustraam,width = 700,height=500)
+    nupuraam = tk.Frame(taustraam,width = 700,height=500, bg="white")
     nupuraam.pack(side="left")
 
     pildiraam = tk.Frame(taustraam, width=300, height=500)
