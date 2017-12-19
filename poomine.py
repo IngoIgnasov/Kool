@@ -9,7 +9,89 @@ sõnad = sõnadjatähed[0]
 tähed = sõnadjatähed[1]
 arvamise_korrad = 0
 
-
+#===============================================================================
+# def a(event):
+#     nupuvajutus("a")
+# def b(event):
+#     nupuvajutus("b")
+# def c(event):
+#     nupuvajutus("c")
+# def d(event):
+#     nupuvajutus("d")
+# def e(event):
+#     nupuvajutus("e")
+# def f(event):
+#     nupuvajutus("f")
+# def g(event):
+#     nupuvajutus("g")
+# def h(event):
+#     nupuvajutus("h")
+# def i(event):
+#     nupuvajutus("i")
+# def j(event):
+#     nupuvajutus("j")
+# def k(event):
+#     nupuvajutus("k")
+# def l(event):
+#     nupuvajutus("l")
+# def m(event):
+#     nupuvajutus("m")
+# def n(event):
+#     nupuvajutus("n")
+# def o(event):
+#     nupuvajutus("o")    
+# def p(event):
+#     nupuvajutus("p")
+# def q(event):
+#     nupuvajutus("q")
+# def r(event):
+#     nupuvajutus("r")
+# def s(event):
+#     nupuvajutus("s")
+# def t(event):
+#     nupuvajutus("t")
+# def u(event):
+#     nupuvajutus("u")
+# def v(event):
+#     nupuvajutus("v")
+# def z(event):
+#     nupuvajutus("z")
+# def ä(event):
+#     nupuvajutus("ä")
+# def õ(event):
+#     nupuvajutus("õ")
+# def ö(event):
+#     nupuvajutus("ö")
+# def ü(event):
+#     nupuvajutus("ü")
+#     
+# funktsioonid = {"a": a,
+#                 "b": b,
+#                 "c": c,
+#                 "d": d,
+#                 "e": e,
+#                 "f": f,
+#                 "g": g,
+#                 "i": i,
+#                 "j": j,
+#                 "k": k,
+#                 "l": l,
+#                 "m": m,
+#                 "n": n,
+#                 "o": o,
+#                 "p": p,
+#                 "q": q,
+#                 "r": r,
+#                 "s": s,
+#                 "t": t,
+#                 "u": u,
+#                 "v": v,
+#                 "z": z,
+#                 "ä": ä,
+#                 "õ": õ,
+#                 "ö":ö,
+#                 "ü":ü}
+#===============================================================================
 def ekraani_suurus(w, h):
     sw = root.winfo_screenwidth()
     sh = root.winfo_screenheight()
@@ -142,22 +224,23 @@ def põhiaken(raskus):
     nupupilt2 = tk.PhotoImage(file="pildid/sininenupp2.png")
     for i in range(6):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90               
-                  ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)).place(x=10+(115*i),y=0)
+                  ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)).place(x=10+(115*i),y=0)
     for i in range(6,12):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90
-          ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)).place(x=10+(115*(i-6)),y=110)
+          ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)).place(x=10+(115*(i-6)),y=110)
     for i in range(12,18):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial",40),height=90
-          ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)).place(x=10+(115*(i-12)),y=220)
+          ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)).place(x=10+(115*(i-12)),y=220)
     for i in range(18,24):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90
-        ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)).place(x=10+(115*(i-18)),y=330)
+        ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)).place(x=10+(115*(i-18)),y=330)
     for i in range(24,27):
-
+ 
         tk.Button(nupuraam,image=nupupilt2,width=190,font=("arial", 40),height=35
-        ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)
+        ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)
         ).place(x=10+(235*(i-24)),y=440)
-
+    tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90               
+                  ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)).place(x=10+(115*i),y=0)
         
     pildiraam = tk.Frame(taustraam,width = 300,height=500)
     pildiraam.config(bg="yellow")
@@ -168,6 +251,7 @@ def põhiaken(raskus):
 def nupuvajutus(täht,label):
     winsound.PlaySound('pildid/nupp.wav', winsound.SND_FILENAME)
     label.config(text = "kas töötab")
+    print(täht)
     # sõna_uuendamine(arvamise_korrad, )
 
 def esiekraan():
