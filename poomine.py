@@ -155,6 +155,16 @@ def sõna_uuendamine(pakkumine, label_sona, label_pilt):
 
     if pakkumine not in sõna:
         arvamise_korrad += 1
+    if arvamise_korrad == 9:
+        top = tk.Toplevel()
+        top.title("Kaotus!")
+        top.geometry(ekraani_suurus(400, 200))
+        msg = tk.Message(top, text="Kaotasite. Uuesti?",font =("arial", 30, "bold"),aspect = 500)
+        msg.pack()
+        button = tk.Button(top, text="Lõpeta",font =("arial", 20, "bold"),command=root.destroy)
+        button.pack()
+        button2 = tk.Button(top, text="Uuesti",font =("arial", 20, "bold"),command=lambda:lõpustuuesti(top))
+        button2.pack()
     vihje = uuendatud_sona
     label_pilt.config(image=pildid[arvamise_korrad + 1])
     label_sona.config(text=uuendatud_sona)
@@ -166,7 +176,6 @@ def sõna_uuendamine(pakkumine, label_sona, label_pilt):
         top = tk.Toplevel()
         top.title("Õnnitlused")
         top.geometry(ekraani_suurus(400, 200))
-        taust = tk.PhotoImage("pildid/taust.png")
         msg = tk.Message(top, text="Õnnitlused",font =("arial", 30, "bold"),aspect = 500)
         msg.pack()
         button = tk.Button(top, text="Lõpeta",font =("arial", 20, "bold"),command=root.destroy)
@@ -254,7 +263,10 @@ def põhiaken(raskus):
     tekstiraam.config(bg="red")
     tekstiraam.pack(fill = "both", expand= 1)
 
-
+    pildiraam = tk.Frame(frame,width = 300,height=500)
+    pildiraam.config(bg="yellow")
+    pildiraam.pack(side="right")
+    
     sõnalabel =tk.Label(tekstiraam, image = taust_sonale, text = vihje, font=("Arial", 40, "bold"), compound = "center",
              width = 1000, height = 200)
     sõnalabel.pack(expand= 1)
@@ -264,9 +276,7 @@ def põhiaken(raskus):
     nupuraam = tk.Frame(frame,width = 700,height=500)
     nupuraam.pack(side="left")
 
-    pildiraam = tk.Frame(taustraam, width=300, height=500)
-    pildiraam.config(bg="yellow")
-    pildiraam.pack(side="right")
+
     pildi_label= tk.Label(pildiraam, image = võllapuu, width= 300, height= 500)
     pildi_label.pack(fill="both", expand= 1)
 
