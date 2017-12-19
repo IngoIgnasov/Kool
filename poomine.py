@@ -151,17 +151,24 @@ def sõna_uuendamine(pakkumine, label):
     label.config(text=uuendatud_sona)
     vihje = uuendatud_sona
 
+    #Juhul kui sõna on ära arvatud,loon lõpuakna
     if vihje == sõna:
         top = tk.Toplevel()
         top.title("Õnnitlused")
-
-        msg = tk.Message(top, text="Õnnitlused")
+        top.geometry(ekraani_suurus(400, 200))
+        taust = tk.PhotoImage("pildid/taust.png")
+        msg = tk.Message(top, text="Õnnitlused",font =("arial", 30, "bold"),aspect = 500)
         msg.pack()
-        button = tk.Button(top, text="Dismiss", command=top.destroy)
+        button = tk.Button(top, text="Lõpeta",font =("arial", 20, "bold"),command=root.destroy)
         button.pack()
-
-
-
+        button2 = tk.Button(top, text="Uuesti",font =("arial", 20, "bold"),command=lambda:lõpustuuesti(top))
+        button2.pack()
+        
+def lõpustuuesti(aken):
+    aken.destroy()
+    esiekraan()
+    
+    
 def raskusastme_valimine(valitud):
     global frame
     frame.destroy()
@@ -220,29 +227,30 @@ def põhiaken(raskus):
     # loon 3 eraldi frame, kuhu panna sõna, nupud ja poomispilt
     global frame
     frame.pack_forget()
-    taustraam = tk.Frame(root)
-    taustraam.config(bg="green")
-    taustraam.pack(fill="both")
+    frame = tk.Frame(root)
+    frame.config(bg="green")
+    frame.pack(fill="both")
     taust_sonale = tk.PhotoImage(file="pildid/taust.png")
 
     sõnajavihje = sõna_valimine(raskus)
     global sõna
     global vihje
+
     sõna = sõnajavihje[1]
     vihje = sõnajavihje[0]
 
-
-    tekstiraam=tk.Frame(taustraam,width = 1000,height=200)
+    tekstiraam=tk.Frame(frame,width = 1000,height=200)
     tekstiraam.config(bg="red")
     tekstiraam.pack(fill = "both", expand= 1)
 
 
-    sõnalabel =tk.Label(tekstiraam, image = taust_sonale, text = sõna_valimine(raskus)[0], font=("Arial", 40, "bold"), compound = "center",
+    sõnalabel =tk.Label(tekstiraam, image = taust_sonale, text = vihje, font=("Arial", 40, "bold"), compound = "center",
              width = 1000, height = 200)
     sõnalabel.pack(expand= 1)
 
+
     
-    nupuraam = tk.Frame(taustraam,width = 700,height=500)
+    nupuraam = tk.Frame(frame,width = 700,height=500)
     nupuraam.pack(side="left")
     
     pixel = tk.PhotoImage(width=1, height=1)
@@ -267,7 +275,7 @@ def põhiaken(raskus):
     tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90               
                   ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel)).place(x=10+(115*i),y=0)
         
-    pildiraam = tk.Frame(taustraam,width = 300,height=500)
+    pildiraam = tk.Frame(frame,width = 300,height=500)
     pildiraam.config(bg="yellow")
     pildiraam.pack(side="right")
     root.mainloop()
@@ -276,7 +284,7 @@ def põhiaken(raskus):
 def nupuvajutus(täht,label):
     winsound.PlaySound('pildid/nupp.wav', winsound.SND_FILENAME)
     print(täht)
-    sõna_uuendamine(arvamise_korrad, label)
+    sõna_uuendamine(täht, label)
 
 
 def esiekraan():
