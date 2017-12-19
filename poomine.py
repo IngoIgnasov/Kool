@@ -220,9 +220,12 @@ def põhiaken(raskus):
     taust_sonale = tk.PhotoImage(file="pildid/taust.png")
 
     sõnajavihje = sõna_valimine(raskus)
+    global sõna
+    global vihje
 
     sõna = sõnajavihje[1]
     vihje = sõnajavihje[0]
+    print(vihje)
 
 
     tekstiraam=tk.Frame(taustraam,width = 1000,height=200)
@@ -230,9 +233,10 @@ def põhiaken(raskus):
     tekstiraam.pack(fill = "both", expand= 1)
 
 
-    sõnalabel =tk.Label(tekstiraam, image = taust_sonale, text = sõna_valimine(raskus)[0], font=("Arial", 40, "bold"), compound = "center",
+    sõnalabel =tk.Label(tekstiraam, image = taust_sonale, text = vihje, font=("Arial", 40, "bold"), compound = "center",
              width = 1000, height = 200)
     sõnalabel.pack(expand= 1)
+
 
     
     nupuraam = tk.Frame(taustraam,width = 700,height=500)
@@ -269,7 +273,7 @@ def põhiaken(raskus):
 def nupuvajutus(täht,label):
     winsound.PlaySound('pildid/nupp.wav', winsound.SND_FILENAME)
     print(täht)
-    sõna_uuendamine(arvamise_korrad, label)
+    sõna_uuendamine(täht, label)
 
 
 def esiekraan():
