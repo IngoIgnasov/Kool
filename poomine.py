@@ -4,19 +4,10 @@ from testproj import teesõnadjatähed
 from tkinter import PhotoImage
 import winsound
 
-
-
 sõnadjatähed = teesõnadjatähed("eesti_keel.txt")
 sõnad = sõnadjatähed[0]
 tähed = sõnadjatähed[1]
 arvamise_korrad = 0
-
-
-# Teen sõnade maatriksi, kus igal real on kindla pikkusega sõnad
-
-
-
-
 
 
 def ekraani_suurus(w, h):
@@ -135,7 +126,8 @@ def põhiaken(raskus):
     tekstiraam=tk.Frame(taustraam,width = 1000,height=200)
     tekstiraam.config(bg="red")
     tekstiraam.pack(fill = "both", expand= 1)
-    tk.Label(tekstiraam,text = sõna_valimine(raskus)[0], font=("Arial", 40, "bold"), compound = "center").place(x = 50, y = 50)
+    sõnalabel = tk.Label(tekstiraam,text = sõna_valimine(raskus)[0], font=("Arial", 40, "bold"), compound = "center")
+    sõnalabel.place(x = 50, y = 50)
     
     nupuraam = tk.Frame(taustraam,width = 700,height=500)
     nupuraam.pack(side="left")
@@ -145,20 +137,20 @@ def põhiaken(raskus):
     nupupilt2 = tk.PhotoImage(file="pildid/sininenupp2.png")
     for i in range(6):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90               
-                  ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i)).place(x=10+(115*i),y=0)
+                  ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)).place(x=10+(115*i),y=0)
     for i in range(6,12):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90
-          ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i)).place(x=10+(115*(i-6)),y=110)
+          ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)).place(x=10+(115*(i-6)),y=110)
     for i in range(12,18):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial",40),height=90
-          ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i)).place(x=10+(115*(i-12)),y=220)
+          ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)).place(x=10+(115*(i-12)),y=220)
     for i in range(18,24):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90
-        ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i)).place(x=10+(115*(i-18)),y=330)
+        ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)).place(x=10+(115*(i-18)),y=330)
     for i in range(24,27):
 
         tk.Button(nupuraam,image=nupupilt2,width=190,font=("arial", 40),height=35
-        ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i)
+        ,text=str(tähed[i]),compound="c",command=lambda:nupuvajutus(i,sõnalabel)
         ).place(x=10+(235*(i-24)),y=440)
 
         
@@ -168,8 +160,9 @@ def põhiaken(raskus):
     root.mainloop()
     
 #funktsioon, kui nuppu vajutatakse
-def nupuvajutus(täht):
+def nupuvajutus(täht,label):
     winsound.PlaySound('pildid/nupp.wav', winsound.SND_FILENAME)
+    label.config(text = "kas töötab")
     # sõna_uuendamine(arvamise_korrad, )
 
 def esiekraan():
