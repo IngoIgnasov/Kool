@@ -151,8 +151,14 @@ def sõna_uuendamine(pakkumine, label):
     label.config(text=uuendatud_sona)
     vihje = uuendatud_sona
 
+    if vihje == sõna:
+        top = tk.Toplevel()
+        top.title("Õnnitlused")
 
-
+        msg = tk.Message(top, text="Õnnitlused")
+        msg.pack()
+        button = tk.Button(top, text="Dismiss", command=top.destroy)
+        button.pack()
 
 
 
@@ -220,7 +226,8 @@ def põhiaken(raskus):
     taust_sonale = tk.PhotoImage(file="pildid/taust.png")
 
     sõnajavihje = sõna_valimine(raskus)
-
+    global sõna
+    global vihje
     sõna = sõnajavihje[1]
     vihje = sõnajavihje[0]
 
