@@ -171,7 +171,7 @@ def sõna_uuendamine(pakkumine, label_sona, label_pilt):
 
 
 
-    #Juhul kui sõna on ära arvatud,loon lõpuakna
+    #Juhul kui sõna on ära arvatud,loon võiduakna
     if vihje == sõna:
         top = tk.Toplevel()
         top.title("Õnnitlused")
