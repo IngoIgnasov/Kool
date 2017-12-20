@@ -124,9 +124,8 @@ def sõna_uuendamine(pakkumine, label_sona, label_pilt):
         button.pack()
         button2 = tk.Button(top, text="Uuesti", font=("arial", 20, "bold"), command=lambda: lõpustuuesti(top))
         button2.pack()
-
-
-    # Juhul kui sõna on ära arvatud, loon lõpuakna
+        top.grab_set()
+        
     if vihje == sõna:
         arvamise_korrad = 0
         arvatud_tähed = ""
@@ -140,6 +139,7 @@ def sõna_uuendamine(pakkumine, label_sona, label_pilt):
         button.pack()
         button2 = tk.Button(top, text="Uuesti", font=("arial", 20, "bold"), command=lambda: lõpustuuesti(top))
         button2.pack()
+        top.grab_set()
 
 # see on mul pooleli
 
@@ -283,7 +283,8 @@ def põhiaken(raskus):
     
 #funktsioon, kui nuppu vajutatakse
 def nupuvajutus(täht,label_sona, label_pilt):
-    winsound.PlaySound('pildid/nupp.wav', winsound.SND_FILENAME)
+    winsound.SND_ASYNC
+    winsound.PlaySound('pildid/nupp.wav', winsound.SND_ASYNC)
     sõna_uuendamine(täht, label_sona, label_pilt)
 
 
