@@ -39,91 +39,6 @@ for i in range(0,11):
     i = tk.PhotoImage(file="pildid/staadiumid/kriips%d.png" %(i))
     pildid.append(i)
 
-# Selle koodilõigu peaks siit ära eemaldama!
-#===============================================================================
-# def a(event):
-#     nupuvajutus("a")
-# def b(event):
-#     nupuvajutus("b")
-# def c(event):
-#     nupuvajutus("c")
-# def d(event):
-#     nupuvajutus("d")
-# def e(event):
-#     nupuvajutus("e")
-# def f(event):
-#     nupuvajutus("f")
-# def g(event):
-#     nupuvajutus("g")
-# def h(event):
-#     nupuvajutus("h")
-# def i(event):
-#     nupuvajutus("i")
-# def j(event):
-#     nupuvajutus("j")
-# def k(event):
-#     nupuvajutus("k")
-# def l(event):
-#     nupuvajutus("l")
-# def m(event):
-#     nupuvajutus("m")
-# def n(event):
-#     nupuvajutus("n")
-# def o(event):
-#     nupuvajutus("o")    
-# def p(event):
-#     nupuvajutus("p")
-# def q(event):
-#     nupuvajutus("q")
-# def r(event):
-#     nupuvajutus("r")
-# def s(event):
-#     nupuvajutus("s")
-# def t(event):
-#     nupuvajutus("t")
-# def u(event):
-#     nupuvajutus("u")
-# def v(event):
-#     nupuvajutus("v")
-# def z(event):
-#     nupuvajutus("z")
-# def ä(event):
-#     nupuvajutus("ä")
-# def õ(event):
-#     nupuvajutus("õ")
-# def ö(event):
-#     nupuvajutus("ö")
-# def ü(event):
-#     nupuvajutus("ü")
-#     
-# funktsioonid = {"a": a,
-#                 "b": b,
-#                 "c": c,
-#                 "d": d,
-#                 "e": e,
-#                 "f": f,
-#                 "g": g,
-#                 "i": i,
-#                 "j": j,
-#                 "k": k,
-#                 "l": l,
-#                 "m": m,
-#                 "n": n,
-#                 "o": o,
-#                 "p": p,
-#                 "q": q,
-#                 "r": r,
-#                 "s": s,
-#                 "t": t,
-#                 "u": u,
-#                 "v": v,
-#                 "z": z,
-#                 "ä": ä,
-#                 "õ": õ,
-#                 "ö":ö,
-#                 "ü":ü}
-#===============================================================================
-
 
 # Funktsioon, milles määratakse sõna, mida mängus arvama hakatakse ja sellele sõnale vastav vihje, kus teatud arv tähti
 # on asendatud alakriipsuga
@@ -227,7 +142,7 @@ def sõna_uuendamine(pakkumine, label_sona, label_pilt):
         button2.pack()
 
 # see on mul pooleli
-"""
+
 def hävitajaasenda():
     global frame
     frame.destroy()
@@ -236,7 +151,7 @@ def hävitajaasenda():
     frame.pack(fill=tk.BOTH, expand=1)
     muster = tk.PhotoImage(file="pildid/pealkiri.png")
     tk.Label(frame, image=muster, width=1000, height=700).pack(fill="both", expand=1, pady=0)
-"""
+
 
 
 
