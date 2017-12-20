@@ -1,7 +1,7 @@
 # Faili alguses impordime kõik vajaminevad moodulid ja funktsioonid
 import tkinter as tk
 from random import randint
-from testproj import teesõnadjatähed
+from sõnad import teesõnadjatähed
 from tkinter import PhotoImage
 import winsound
 from time import sleep
@@ -43,6 +43,7 @@ for i in range(0,11):
 # Funktsioon, milles määratakse sõna, mida mängus arvama hakatakse ja sellele sõnale vastav vihje, kus teatud arv tähti
 # on asendatud alakriipsuga
 def sõna_valimine(raskusaste):
+    # Vastavalt raskusastmele määrame sõna pikkuse
     if raskusaste == "kerge":
         pikkus = randint(4, 6)
     elif raskusaste == "keskmine":
@@ -53,8 +54,9 @@ def sõna_valimine(raskusaste):
     sõna_asukoht = randint(0, len(sõnad[pikkus]) - 1)
     sõna = sõnad[pikkus][sõna_asukoht]
     vihje = ""
-    lisatavad_tähed = [sõna[0], sõna[-1]]
 
+    # Vastavalt loodud sõnale koostame vihje, mida ekraanile kuvada
+    lisatavad_tähed = [sõna[0], sõna[-1]]
     if raskusaste == "kerge":
         for element in range(len(sõna)):
             if element == 0 or element == len(sõna) - 1:
@@ -112,6 +114,7 @@ def sõna_uuendamine(pakkumine, label_sona, label_pilt):
 
     # Juhul, kui on arvatud 10 korda
     if arvamise_korrad == 10:
+        label_sona.config(text="Vastus: " + sõna)
         arvamise_korrad = 0
         arvatud_tähed = ""
         võit_kaotus = "kaotus"
@@ -141,21 +144,6 @@ def sõna_uuendamine(pakkumine, label_sona, label_pilt):
         button2.pack()
         top.grab_set()
 
-# see on mul pooleli
-
-def hävitajaasenda():
-    global frame
-    frame.destroy()
-
-    frame = tk.Frame()
-    frame.pack(fill=tk.BOTH, expand=1)
-    muster = tk.PhotoImage(file="pildid/pealkiri.png")
-    tk.Label(frame, image=muster, width=1000, height=700).pack(fill="both", expand=1, pady=0)
-
-
-
-
-
 
 # Funktsioon, mis laseb lõpust uuesti alustad ja kutsub välja esiekraani
 def lõpustuuesti(aken):
@@ -163,19 +151,20 @@ def lõpustuuesti(aken):
     esiekraan()
     
 
-# Raskusastme valimise aken
+# Raskusastme valimise graagilineaken
 def raskusastme_valimine(valitud):
     global frame
     frame.destroy()
     frame = tk.Frame()
     frame.pack(fill=tk.BOTH, expand=1)
 
+    # Loeme sisse hiljem kasutatavad pildid
     muster = tk.PhotoImage(file="pildid/taust.gif")
     Kerge = tk.PhotoImage(file="pildid/lihtne.gif")
     Keskmine = tk.PhotoImage(file="pildid/keskmine.gif")
     Raske = tk.PhotoImage(file="pildid/raske.gif")
 
-
+    # Vastavalt valitud raskusastmele kuvame õige taustapildi
     if valitud == "kerge":
         tk.Label(frame, image=Kerge, width=1000, height=700).pack(fill="both", expand=1)
         raskusaste = "kerge"
@@ -188,11 +177,10 @@ def raskusastme_valimine(valitud):
     else:
         tk.Label(frame, image=muster, width=1000, height=700).pack(fill="both", expand=1)
 
-
+    # Nupud, mis asetsevad graafilisel aknal
     tagasi_nupp = tk.Button(frame, command=esiekraan, text="tagasi")
     tagasi_nupp.config(font=("arial", 24), width = 100, height= 50, image=muster, compound="center", activebackground="red", bd = 10, relief="ridge")
     tagasi_nupp.place(x = 435, y = 600)
-
 
     kerge = tk.Button(frame, text="Kerge")
     kerge.config(font=("arial", 24), width=100, height=50, image=muster, compound="center",
@@ -217,25 +205,24 @@ def raskusastme_valimine(valitud):
     
     root.mainloop()
 
-    
-def põhiaken(raskus):
-    # loon 3 eraldi frame, kuhu panna sõna, nupud ja poomispilt
-    global frame
-    frame.pack_forget()
-    frame = tk.Frame(root)
-    frame.config(bg="green")
-    frame.pack(fill="both")
-    taust_sonale = tk.PhotoImage(file="pildid/taust.png")
-    võllapuu = tk.PhotoImage(file="pildid/staadiumid/kriips0.png")
 
-    sõnajavihje = sõna_valimine(raskus)
+# Mängu enda graafilineaken
+def põhiaken(raskus):
+    # Kõik vajalikud muutujad, mida fuktsioonis vajame
+    global frame
     global sõna
     global vihje
     global arvatud_tähed
-
+    frame.pack_forget()
+    frame = tk.Frame(root)
+    frame.pack(fill="both")
+    taust_sonale = tk.PhotoImage(file="pildid/taust.png")
+    võllapuu = tk.PhotoImage(file="pildid/staadiumid/kriips0.png")
+    sõnajavihje = sõna_valimine(raskus)
     sõna = sõnajavihje[1]
     vihje = sõnajavihje[0]
 
+    # Graafilised elemendid ekraanil
     tekstiraam=tk.Frame(frame,width = 1000,height=200)
     tekstiraam.config(bg="red")
     tekstiraam.pack(fill = "both", expand= 1)
@@ -248,18 +235,16 @@ def põhiaken(raskus):
              width = 1000, height = 200)
     sõnalabel.pack(expand= 1)
 
-
-    
-
     nupuraam = tk.Frame(frame,width = 700,height=500, bg="white")
     nupuraam.pack(side="left")
 
     pildi_label= tk.Label(pildiraam, image = võllapuu, width= 300, height= 500)
     pildi_label.pack(fill="both", expand= 1)
 
-
     nupupilt = tk.PhotoImage(file="pildid/sininenupp.png")
     nupupilt2 = tk.PhotoImage(file="pildid/sininenupp2.png")
+
+    # Nupud
     for i in range(6):
         tk.Button(nupuraam,image=nupupilt,width = 90,font=("arial", 40),height=90
                   ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel, pildi_label)).place(x=10+(115*i),y=0)
@@ -280,14 +265,15 @@ def põhiaken(raskus):
                   ,text=str(tähed[i]),compound="c",command=lambda j=i:nupuvajutus(tähed[j],sõnalabel, pildi_label)).place(x=10+(115*i),y=0)
         
     root.mainloop()
-    
+
+
 #funktsioon, kui nuppu vajutatakse
 def nupuvajutus(täht,label_sona, label_pilt):
     winsound.SND_ASYNC
     winsound.PlaySound('pildid/nupp.wav', winsound.SND_ASYNC)
     sõna_uuendamine(täht, label_sona, label_pilt)
 
-
+# Esiekraa, kus on nupud väljumiseks ja mängimiseks
 def esiekraan():
     global frame
     frame.destroy()
@@ -321,4 +307,6 @@ def esiekraan():
 
     root.mainloop()
 
+
+# See funktsiooni väljakutsumine, algatab kõik protsessid
 esiekraan()
